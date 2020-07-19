@@ -23,11 +23,46 @@ function updateNumber() {
 
 function updateDot() {
   dot.addEventListener("click", () => {
-    // if (result.textContent.includes(".")) {
-    //   result.innerHTML += "";
-    // } else {
-    //  }
-    result.innerHTML += dot.innerHTML;
+    let plus = result.textContent.indexOf("+");
+    let min = result.textContent.indexOf("-");
+    let devide = result.textContent.indexOf("÷");
+    let mult = result.textContent.indexOf("X");
+    let operator;
+
+    if (min > -1) {
+      operator = min;
+    }
+    if (plus > -1) {
+      operator = plus;
+    }
+    if (devide > -1) {
+      operator = devide;
+    }
+    if (mult > -1) {
+      operator = mult;
+    }
+    let firstPart = result.innerHTML.substr(0, operator);
+    let secondPart = result.innerHTML.substr(
+      operator + 1,
+      result.innerHTML.length
+    );
+
+    if (firstPart.includes(".")) {
+      result.innerHTML += "";
+    } else {
+      if (secondPart.includes(".")) {
+        result.innerHTML += "";
+      } else {
+        result.innerHTML += dot.innerHTML;
+        result.replace("..", ".");
+      }
+    }
+
+    if (secondPart.includes(".")) {
+      result.innerHTML += "";
+    } else {
+      result.innerHTML += dot.innerHTML;
+    }
   });
 }
 
@@ -93,7 +128,6 @@ function updateEqual() {
     if (mult > -1) {
       operator = mult;
     }
-
     let firstPart = parseFloat(result.innerHTML.substr(0, operator));
     let secondPart = parseFloat(
       result.innerHTML.substr(operator + 1, result.innerHTML.length)
