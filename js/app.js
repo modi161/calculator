@@ -94,8 +94,8 @@ function updateEqual() {
       operator = mult;
     }
 
-    let firstPart = parseInt(result.innerHTML.substr(0, operator));
-    let secondPart = parseInt(
+    let firstPart = parseFloat(result.innerHTML.substr(0, operator));
+    let secondPart = parseFloat(
       result.innerHTML.substr(operator + 1, result.innerHTML.length)
     );
 
